@@ -158,3 +158,12 @@ body {
     margin-right: 10px;
     object-fit: contain;
 }
+
+  .button{
+    display: flex;
+    justify-content: center;
+    margin-left: 450px;
+    margin-right: 450px;
+    background-color: black;
+    color: white;
+  }
