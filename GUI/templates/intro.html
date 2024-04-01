@@ -3,8 +3,8 @@
 
 <head>
   <title>INTRODUCTION</title>
-  <link rel="stylesheet" type="text/css" href="../CSS/style.css">
-  <link rel="stylesheet" type="text/css" href="../CSS/navigation.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/navigation.css') }}">
 </head>
 <style>
     .member {
@@ -57,12 +57,12 @@
 
 <body>
   <div class="navbar">
-    <img src="../Images/logo.png" alt="logo" /> 
-    <div class="home"><ul> <li><a  href="index.html">   Home </a></li></ul></div>
+    <img src="{{ url_for('static', filename='Images/logo.png') }}" alt="logo" width = "100" height = "auto"/> 
+    <div class="home"><ul> <li><a  href="{{url_for('index')}}">   Home </a></li></ul></div>
     
     <ul>
-      <li><a href="about-us.html">About Us </a></li>
-      <li><a href="info.html">Info </a></li>
+      <li><a href="{{url_for('about_us')}}">About Us </a></li>
+      <li><a href="{{url_for('info')}}">Info </a></li>
       
     </ul>
   </div>
@@ -84,8 +84,8 @@
     <div class = "introduction">
         <p>As a part of this assignment, we have implemented the following algorithms:</p>
         <ul id="introduction">
-            <li><a href="jarvisalgo.html">Jarvis March Algorithm</a></li>
-            <li><a href="kpsalgo.html">Kirk Patrick Seidel Algorithm</a></li>
+            <li><a href="{{url_for('jarvis_march')}}" style="color: rgb(238, 238, 235);">Jarvis March Algorithm</a></li>
+            <li><a href="{{url_for('kirkpatrick_seidel')}}" style="color: rgb(238, 238, 235);">Kirk Patrick Seidel Algorithm</a></li>
         </ul>
     </div>
   

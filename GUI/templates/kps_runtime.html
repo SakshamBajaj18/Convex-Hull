@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>DAA ASSIGNMENT</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/navigation.css') }}">
+</head>
+<style>
+    .member {
+      display: flex;
+      background-color: black;
+      border-radius: 1px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black;
+      padding: 0px;
+      max-width: 100%;
+      position: relative;
+    }
+    h1 {
+      margin-top: 70px;
+      text-align: center;
+      color: white;
+      size: 100px;
+    }
+    h2{
+      margin-top: 70px;
+      text-align: center;
+      color: white;
+      size: 100px;
+      margin-left: 0px;
+    
+    }
+
+    .member p {
+      color: white;
+      font-size: 30px;
+      display: flex;
+      justify-content: first baseline;
+    }
+    .introduction {
+      padding: 0 250px;
+      color: white;
+      font-size: 20px;
+      line-height: 1.6;
+    }
+    .introduction ul {
+      list-style-type: disc;
+      margin-left: 0px;
+      justify-content: left;
+    }
+    .center-image {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+</style>
+
+<body>
+  <div class="navbar">
+    <img src="{{ url_for('static', filename='Images/logo.png') }}" alt="logo" /> 
+    <div class="home"><ul> <li><a  href="{{url_for('index')}}">   Home </a></li></ul></div>
+    
+    <ul>
+      <li><a href="{{url_for('about_us')}}">About Us </a></li>
+      <li><a href="{{url_for('info')}}">Info </a></li>
+      
+    </ul>
+  </div>
+
+  <h1>KIRK-PATRICK SEIDEL ALGORITHM</h1>
+
+  <h2 id="introduction">RUNNING TIME ANALYSIS</h2>
+    <div class = "introduction">
+        <p>The time complexity breakdown of the Kirkpatrick-Seidel algorithm is as follows:</p>
+        <ol>
+          <li><u>Best Case Time Complexity:</u> The best case time complexity occurs when the input points are already sorted. In this case, the sorting step would take O(n) time, and the overall time complexity would be dominated by the construction of convex hulls, which still takes O(n log h) time due to the construction of convex layers.</li>
+          <li><u>Worst Case Time Complexity: </u>  The worst case time complexity occurs when the input points are such that each recursive step in constructing the convex hull creates a single convex layer, resulting in log h layers. In this case, the time complexity is again O(n log h) due to the construction of convex hulls.
+          </li>
+        </ol>
+          
+        <p>Thus it can be summarized as follows:</p>
+        
+        <ul id="introduction">
+            <li>Time Complexity = <b>O(nlogh)</b>, where n: total number of points, h: number of points on the convex hull</li>
+            <li>Best Case Time Complexity = <b>O(nlogh)</b></li>
+            <li>Worst Case Time Complexity = <b>O(nlogh)</b></li>
+        </ul>
+
+        <!-- <img class="center-image" src="jm-table.png" alt="Jarvis March Algorithm" /> -->
+    </div>
+
+
+    <h2 id="introduction">BREAKING DOWN THE TIME COMPLEXITY</h2>
+    <div class="introduction">
+      <h3>convexUpperHull(points):</h3>
+      <ul>
+            <li>This function starts by identifying the minimum and maximum points based on their x-coordinates, which takes linear time O(n), where n is the number of points.</li>
+            <li>It then constructs the upper convex hull by recursively subdividing the set of points into two halves based on the line segment defined by the minimum and maximum points.</li>
+            <li>Recursive calls are made to the <code>get_upper_hull</code> function for finding the upper hull of the given set of points.</li>
+            <li><code>get_upper_hull</code> takes a reference point pair <code>(pmin, pmax)</code> and a list of points <code>(points)</code>.</li>
+            <li>In the worst case, <code>get_upper_hull</code> iterates through all points in <code>points</code> to classify them based on their position relative to the line formed by <code>(pmin, pmax)</code>, resulting in a time complexity of O(n).</li>
+            <li>After classification, <code>get_upper_hull</code> makes recursive calls to itself on the left and right halves of the points, contributing further to the overall complexity.</li>
+            <li>The total time complexity of <code>get_upper_hull</code> can be expressed as T(n) = O(n) + T(n/2) + T(n/2), which translates to T(n) = O(n log n) using the Master theorem for divide-and-conquer recurrences.</li>
+            <li>Since <code>convexUpperHull</code> makes two such recursive calls, the overall time complexity becomes O(2 * n log n) = O(n log n).</li>
+        
+      </ul>
+      <div style="display: flex;">
+        <div style="flex: 50%; padding: 10px;">
+            <img class="center-image" src="{{ url_for('static', filename='Images/upperhull.png') }}" alt="Jarvis March Algorithm" width="100%" height="auto" />
+        </div>
+        <div style="flex: 50%; padding: 10px;">
+            <img class="center-image" src="{{ url_for('static', filename='Images/getupperhull.png') }}" alt="Jarvis March Algorithm" width="100%" height="auto" />
+        </div>
+    </div>
+    
+      
+      <h3>convexLowerHull(points):</h3>
+      <ul>
+        <li>This function transforms the points by negating their x and y coordinates, essentially creating a mirrored copy of the point set.</li>
+        <li>It then calls convexUpperHull on the transformed points.</li>
+        <li>The complexity of this function remains the same as convexUpperHull, which is O(n log n).</li>
+      </ul>
+      <img class="center-image" src="{{ url_for('static', filename='Images/lowerhull.png') }}" alt="Jarvis March Algorithm"  width="600" height="auto" />
+      
+      <h3>convexHull(points):</h3>
+      <ul>
+        <li>This function calls convexUpperHull and convexLowerHull to find the upper and lower hulls of the point set.</li>
+        <li>It then combines the results and removes duplicate points at the intersection of the hulls.</li>
+        <li>The dominant factors in the complexity are the two calls to convexUpperHull and convexLowerHull, both with O(n log n) complexity.</li>
+        <li>Therefore, the overall complexity of convexHull is also O(n log n).</li>
+      </ul>
+      <img class="center-image" src="{{ url_for('static', filename='Images/hull.png') }}" alt="Jarvis March Algorithm"  width="600" height="auto" />
+      
+      <h3>Other functions:</h3>
+      <ul>
+        <li>find_median_points and find_median_slope use quickselect which has a worst-case time complexity of O(n^2). However, in practice, it's usually much faster (closer to O(n)).</li>
+        <li>partition5 and partition are sorting algorithms with a worst-case complexity of O(n^2). But for smaller sub-arrays (like size 5 in partition5), their impact on the overall complexity is negligible.</li>
+        <li>Overall, the dominant factor in the time complexity of the convex hull algorithm is the divide-and-conquer approach used in get_upper_hull and convexUpperHull, leading to a time complexity of O(n log n).</li>
+      </ul>
+    </div>
+
+    <nav>
+        <ul class="button-container">
+        <li class="button-right"><a href="{{url_for('kirkpatrick_seidel')}}">&larr; Algo </a></li>
+          <li><a href="{{url_for('kps_visualisation')}}">Click here for Visualization</a></li>
+          <li class="button-right"><a href="{{url_for('kps_epilogue')}}">Epilogue &rarr;</a></li>
+        </ul>
+      </nav>
+  <div class="footer">
+    We, the students of BITS Pilani Hyderabad Campus, have created this webpage, as a part of the Assignment-1 of the course
+  CS F364 - Design and Analysis of Algorithms (DAA).
+  </div>
+</body>
+  
+</html>

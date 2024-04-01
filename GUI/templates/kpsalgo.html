@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>DAA ASSIGNMENT</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/navigation.css') }}">
+</head>
+<style>
+    .member {
+      display: flex;
+      background-color: black;
+      border-radius: 1px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black;
+      padding: 0px;
+      max-width: 100%;
+      position: relative;
+    }
+    h1 {
+      margin-top: 70px;
+      text-align: center;
+      color: white;
+      size: 100px;
+    }
+    h2{
+      margin-top: 70px;
+      text-align: center;
+      color: white;
+      size: 100px;
+      margin-left: 0px;
+    
+    }
+
+    .member p {
+      color: white;
+      font-size: 30px;
+      display: flex;
+      justify-content: first baseline;
+    }
+    .introduction {
+      padding: 0 250px;
+      color: white;
+      font-size: 20px;
+      line-height: 1.6;
+    }
+    .introduction ul {
+      list-style-type: disc;
+      margin-left: 0px;
+      justify-content: left;
+    }
+    .center-image {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+</style>
+
+<body>
+  <div class="navbar">
+    <img src="{{ url_for('static', filename='Images/logo.png') }}" alt="logo" /> 
+    <div class="home"><ul> <li><a  href="{{url_for('index')}}">   Home </a></li></ul></div>
+    
+    <ul>
+      <li><a href="{{url_for('about_us')}}">About Us </a></li>
+      <li><a href="{{url_for('info')}}">Info </a></li>
+      
+    </ul>
+  </div>
+
+  <h1>KIRK-PATRICK SEIDEL ALGORITHM</h1>
+
+  <div class="introduction">
+    <p>The Kirk-Patrick Seidel Algorithm is a computational geometry algorithm used to find the convex hull of a set of points in the plane. The convex hull is the smallest possible convex polygon that encloses all points in the given set. It is also called Prune-and-Search algorithm.</p>
+    
+    </div>
+
+    <h2 id="introduction">WORKING OF THE ALGORITHM</h2>
+    
+    <div class = "introduction">
+        <p>The basic idea of the KPS algorithm is a type of reversal of the divide-and-conquer algorithm for convex hulls. This algorithm tells us to divide the problem into subproblems, solve the subproblems, and finally merge the subsolutions.</p>
+        <ol>
+            <li><u>Finding Median of Medians:</u> First step is to find median of x-coordinate of points, and dividing the point set into two halves using this median.</li>
+            <li><u>Finding Convex Hull edges:</u> Determine which convex hull edges that intersect the vertical line that the median x-coordinate defines. Finding convex hull edges requires linear time.
+            </li>
+            <li><u>Discard the non-contributing points:</u> Delete the points that do not influence the formation of convex hull edges, i.e., that are not contributing to the convex hull edges, both on the left and right side of the dividing line. </li>
+            <li><u>Recursive Computation:</u> Execute separate recursions for the top and lower halves of the convex hull. Points below the bridge edge vertically should be discarded in the recursion for the upper hull, while the points above the bridge edge vertically should be discarded in the recursion for the lower hull.
+            </li>
+            <li><u>Repeating Recursion:</u> Keep going through the recursive procedure, until the convex hull of the full collection of points is obtained.</li>  
+        </ol>
+
+        <p>Finally, it can be said that the Kirkpatrick-Seidel algorithm begins by dividing the input points based on the median x-coordinate. It then identifies convex hull edges intersecting the median-defined vertical line, discards non-contributing points, and proceeds recursively with remaining points. Recursion is separately performed for upper and lower hulls, discarding points accordingly. This process is repeated until the entire convex hull is obtained.
+
+        </p>
+
+        <img class="center-image" src="../Images/kpsfig.png" alt="KPS Algorithm" />
+    </div>
+
+
+    <nav>
+      <ul class="button-container">
+        <li><a href="{{url_for('kps_visualisation')}}">Click here for Visualization</a></li>
+        <li class="button-right"><a href="{{url_for('kps_runtime')}}">Run Time &rarr;</a></li>
+      </ul>
+    </nav>
+  <div class="footer">
+    We, the students of BITS Pilani Hyderabad Campus, have created this webpage, as a part of the Assignment-1 of the course
+  CS F364 - Design and Analysis of Algorithms (DAA).
+  </div>
+</body>
+  
+</html>

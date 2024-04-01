@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>DAA ASSIGNMENT</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/navigation.css') }}">
+</head>
+<style>
+    .member {
+      display: flex;
+      background-color: black;
+      border-radius: 1px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black;
+      padding: 0px;
+      max-width: 100%;
+      position: relative;
+    }
+    h1 {
+      margin-top: 70px;
+      text-align: center;
+      color: white;
+      size: 100px;
+    }
+    h2{
+      margin-top: 70px;
+      text-align: center;
+      color: white;
+      size: 100px;
+      margin-left: 0px;
+    
+    }
+
+    .member p {
+      color: white;
+      font-size: 30px;
+      display: flex;
+      justify-content: first baseline;
+    }
+    .introduction {
+      padding: 0 250px;
+      color: white;
+      font-size: 20px;
+      line-height: 1.6;
+    }
+    .introduction ul {
+      list-style-type: disc;
+      margin-left: 0px;
+      justify-content: left;
+    }
+    .center-image {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+</style>
+
+<body>
+  <div class="navbar">
+    <img src="{{ url_for('static', filename='Images/logo.png') }}" alt="logo" /> 
+    <div class="home"><ul> <li><a  href="{{url_for('index')}}">   Home </a></li></ul></div>
+    
+    <ul>
+      <li><a href="{{url_for('about_us')}}">About Us </a></li>
+      <li><a href="{{url_for('info')}}">Info </a></li>
+      
+    </ul>
+  </div>
+
+  <h1>JARVIS MARCH ALGORITHM</h1>
+
+  <div class="introduction">
+    <p>The Jarvis march algorithm, also known as the gift-wrapping algorithm, is a technique used in computational geometry to find the convex hull of a set of points. The convex hull is the smallest possible convex polygon that encloses all the points in the set.</p>
+    
+    </div>
+
+    <h2 id="introduction">WORKING OF THE ALGORITHM</h2>
+    
+    <div class = "introduction">
+        <p>The working of the algorithm can be divided into three operations.</p>
+        <ol>
+            <li><u>Initialization:</u> The algorithm starts by finding the leftmost point in the set and designating it as the starting point. If there are multiple points with the same x-coordinate, the point with the lowest y-coordinate is chosen to be the starting point. This point will always be part of the convex hull.</li>
+            <li><u>Finding the Next Point:</u> At each iteration, we consider the current point on the hull and iterate through all the remaining points. For each point, we check its orientation relative to the current point and the next candidate point in the hull. If a point is found to be more "counter-clockwise" than the current next candidate, it becomes the new candidate.  We essentially keep track of the point that creates the largest left turn with the current point and the next candidate point on the hull.</li>
+            <li><u>Termination:</u> This process of finding the most "counter-clockwise" point continues until we reach the point where the next candidate becomes the starting (leftmost) point again. This signifies that we have completed a full loop around the convex hull.
+        </ol>
+
+        <img class="center-image" src="{{url_for('static',filename='Images/jmfig.png')}}" alt="Jarvis March Algorithm" width="400" height="auto" />
+    </div>
+
+    <nav>
+      <ul class="button-container">
+        <li><a href="{{url_for('jarvis_march_visualisation')}}">Click here for Visualization </a></li>
+        <li style="flex: 1;"></li>
+        <li class="button-right"><a href="{{url_for('jm_runtime')}}">Run Time &rarr;</a></li>
+      </ul>
+    </nav>
+  <div class="footer">
+    We, the students of BITS Pilani Hyderabad Campus, have created this webpage, as a part of the Assignment-1 of the course
+  CS F364 - Design and Analysis of Algorithms (DAA).
+  </div>
+</body>
+  
+</html>

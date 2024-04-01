@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>About Us</title>
-  <link rel="stylesheet" type="text/css" href="../CSS/style.css">
-  <link rel="stylesheet" type="text/css" href="../CSS/navigation.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/navigation.css') }}">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -59,12 +59,12 @@
 </head>
 <body>
     <div class="navbar">
-        <img src="../Images/logo.png" alt="logo" /> 
-        <div class="home"><ul> <li><a  href="index.html">   Home </a></li></ul></div>
+        <img src="{{ url_for('static', filename='Images/logo.png') }}" alt="logo" /> 
+        <div class="home"><ul> <li><a  href="{{url_for('index')}}">   Home </a></li></ul></div>
         
         <ul>
-          <li><a href="about-us.html">About Us </a></li>
-          <li><a href="info.html">Info </a></li>
+          <li><a href="{{url_for('about_us')}}">About Us </a></li>
+          <li><a href="{{url_for('info')}}">Info </a></li>
           
         </ul>
       </div>
@@ -75,7 +75,7 @@
 <div class="container">
     <div class="member">
       <div class="member-image">
-        <img src="../Images/rohan-pothireddy.png" alt="Rohan Pothireddy">
+        <img src="{{ url_for('static', filename='Images/rohan-pothireddy.png') }}" alt="Rohan Pothireddy">
       </div>
       <div class="member-content">
         <h2>ROHAN POTHIREDDY</h2>
@@ -88,7 +88,7 @@
 <div class="container">
     <div class="member">
       <div class="member-image">
-        <img src="../Images/rohan-pothireddy.png" alt="Rohan Pothireddy">
+        <img src="{{ url_for('static', filename='Images/rohan-pothireddy.png') }}" alt="Rohan Pothireddy">
       </div>
       <div class="member-content">
         <h2>SAKSHAM BAJAJ</h2>
@@ -101,7 +101,7 @@
 <div class="container">
     <div class="member">
       <div class="member-image">
-        <img src="../Images/rohan-pothireddy.png" alt="Rohan Pothireddy">
+        <img src="{{ url_for('static', filename='Images/rohan-pothireddy.png') }}" alt="Rohan Pothireddy">
       </div>
       <div class="member-content">
         <h2>VASHISTH CHOUDHARI</h2>
@@ -114,7 +114,7 @@
 <div class="container">
     <div class="member">
       <div class="member-image">
-        <img src="../Images/rohan-pothireddy.png" alt="Rohan Pothireddy">
+        <img src="{{ url_for('static', filename='Images/rohan-pothireddy.png') }}" alt="Rohan Pothireddy">
       </div>
       <div class="member-content">
         <h2>KOLASANI AMIT VISHNU</h2>
@@ -124,13 +124,6 @@
     </div>
 </div>
 
-<!-- <div class="footer">
-  OSINT framework focused on gathering information from free tools or resources. The intention is to help people find free OSINT resources. Some of the sites included might require registration or offer more data for $$$, but you should be able to get at least a portion of the available information for no cost.
-We created this framework with an information security point of view. Since then, the response from other fields and disciplines has been incredible. I would love to be able to include any other OSINT resources, especially from fields outside of infosec. Please let me know about anything that might be missing!
-
-For Update Notifications, Suggestions, Comments, Feedback
-
-Feedback or new tool suggestions are extremely welcome! Please feel free to reach out on info@hacker4help.com -->
 <div class="footer">
     We, the students of BITS Pilani Hyderabad Campus, have created this webpage, as a part of the Assignment-1 of the course
   CS F364 - Design and Analysis of Algorithms (DAA).
