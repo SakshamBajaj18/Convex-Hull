@@ -37,7 +37,7 @@ body {
   .container {
     max-width: 600px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 3px;
     background-color: white;
     border-radius: 10px;
     border: 10px solid black;
