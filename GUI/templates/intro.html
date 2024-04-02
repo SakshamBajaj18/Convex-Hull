@@ -78,7 +78,9 @@
     
     <p>The implementation of convex hull algorithms involves several techniques, including Jarvis march (gift wrapping) and Kirk Patrick Seidel algorithm. These algorithms differ in their approach and efficiency, but they all aim to efficiently compute the convex hull of a given set of points.</p>
 
-    <p>Jarvis march, for instance, repeatedly finds the point with the smallest polar angle relative to the current point and adds it to the convex hull, while the Kirkpatrick-Seidel algorithm is an algorithm for calculating the convex hull of a set of points in a plane.</p>
+    <p>Jarvis march, for instance, repeatedly finds the point with the smallest polar angle relative to the current point and adds it to the convex hull, while the 
+      Kirkpatrick-Seidel algorithm iteratively divides the point set into smaller subsets, constructing convex layers of increasing granularity until the convex hull is formed, 
+      leveraging the concept of extreme points and triangulation to efficiently compute the convex hull.</p>
 
       <p>Implementing convex hull algorithms requires a solid understanding of data structures and computational geometry principles. Efficiency considerations are also crucial, as the performance of these algorithms can vary depending on the size and distribution of the input points. Additionally, handling degenerate cases and ensuring robustness against numerical errors are important aspects of implementation.
       </p>
