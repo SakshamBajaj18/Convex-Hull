@@ -79,8 +79,8 @@
     <div class = "introduction">
         <p>The time complexity breakdown of the Kirkpatrick-Seidel algorithm is as follows:</p>
         <ol>
-          <li><u>Best Case Time Complexity:</u> The best case time complexity occurs when the input points are already sorted. In this case, the sorting step would take O(n) time, and the overall time complexity would be dominated by the construction of convex hulls, which still takes O(n log h) time due to the construction of convex layers.</li>
-          <li><u>Worst Case Time Complexity: </u>  The worst case time complexity occurs when the input points are such that each recursive step in constructing the convex hull creates a single convex layer, resulting in log h layers. In this case, the time complexity is again O(n log h) due to the construction of convex hulls.
+          <li><u>Best Case Time Complexity:</u> The best case time complexity occurs when the input points are already sorted. In this case, the sorting step would take <b>O(n)</b> time, and the overall time complexity would be dominated by the construction of convex hulls, which still takes <b>O(n log h)</b> time due to the construction of convex layers.</li>
+          <li><u>Worst Case Time Complexity: </u>  The worst case time complexity occurs when the input points are such that each recursive step in constructing the convex hull creates a single convex layer, resulting in log h layers. In this case, the time complexity is again <b>O(n log h)</b> due to the construction of convex hulls.
           </li>
         </ol>
           
@@ -104,10 +104,10 @@
             <li>It then constructs the upper convex hull by recursively subdividing the set of points into two halves based on the line segment defined by the minimum and maximum points.</li>
             <li>Recursive calls are made to the <code>get_upper_hull</code> function for finding the upper hull of the given set of points.</li>
             <li><code>get_upper_hull</code> takes a reference point pair <code>(pmin, pmax)</code> and a list of points <code>(points)</code>.</li>
-            <li>In the worst case, <code>get_upper_hull</code> iterates through all points in <code>points</code> to classify them based on their position relative to the line formed by <code>(pmin, pmax)</code>, resulting in a time complexity of O(n).</li>
+            <li>In the worst case, <code>get_upper_hull</code> iterates through all points in <code>points</code> to classify them based on their position relative to the line formed by <code>(pmin, pmax)</code>, resulting in a time complexity of <b>O(n)</b>.</li>
             <li>After classification, <code>get_upper_hull</code> makes recursive calls to itself on the left and right halves of the points, contributing further to the overall complexity.</li>
-            <li>The total time complexity of <code>get_upper_hull</code> can be expressed as T(n) = O(n) + T(n/2) + T(n/2), which translates to T(n) = O(n log n) using the Master theorem for divide-and-conquer recurrences.</li>
-            <li>Since <code>convexUpperHull</code> makes two such recursive calls, the overall time complexity becomes O(2 * n log n) = O(n log n).</li>
+            <li>The total time complexity of <code>get_upper_hull</code> can be expressed as <b>T(n) = O(n) + T(n/2) + T(n/2)</b>, which translates to <b>T(n) = O(n log n)</b>> using the Master theorem for divide-and-conquer recurrences.</li>
+            <li>Since <code>convexUpperHull</code> makes two such recursive calls, the overall time complexity becomes <b>O(2 * n log n) = O(n log n).</b></li>
         
       </ul>
       <div style="display: flex;">
@@ -124,7 +124,7 @@
       <ul>
         <li>This function transforms the points by negating their x and y coordinates, essentially creating a mirrored copy of the point set.</li>
         <li>It then calls convexUpperHull on the transformed points.</li>
-        <li>The complexity of this function remains the same as convexUpperHull, which is O(n log n).</li>
+        <li>The complexity of this function remains the same as convexUpperHull, which is <b>O(n log n)</b>.</li>
       </ul>
       <img class="center-image" src="{{ url_for('static', filename='Images/lowerhull.png') }}" alt="Jarvis March Algorithm"  width="600" height="auto" />
       
@@ -132,23 +132,32 @@
       <ul>
         <li>This function calls convexUpperHull and convexLowerHull to find the upper and lower hulls of the point set.</li>
         <li>It then combines the results and removes duplicate points at the intersection of the hulls.</li>
-        <li>The dominant factors in the complexity are the two calls to convexUpperHull and convexLowerHull, both with O(n log n) complexity.</li>
-        <li>Therefore, the overall complexity of convexHull is also O(n log n).</li>
+        <li>The dominant factors in the complexity are the two calls to convexUpperHull and convexLowerHull, both with <b>O(n log n) </b>complexity.</li>
+        <li>Therefore, the overall complexity of convexHull is also <b>O(n log n)</b>.</li>
       </ul>
       <img class="center-image" src="{{ url_for('static', filename='Images/hull.png') }}" alt="Jarvis March Algorithm"  width="600" height="auto" />
       
       <h3>Other functions:</h3>
       <ul>
-        <li>find_median_points and find_median_slope use quickselect which has a worst-case time complexity of O(n^2). However, in practice, it's usually much faster (closer to O(n)).</li>
-        <li>partition5 and partition are sorting algorithms with a worst-case complexity of O(n^2). But for smaller sub-arrays (like size 5 in partition5), their impact on the overall complexity is negligible.</li>
-        <li>Overall, the dominant factor in the time complexity of the convex hull algorithm is the divide-and-conquer approach used in get_upper_hull and convexUpperHull, leading to a time complexity of O(n log n).</li>
+        <li>find_median_points and find_median_slope use quickselect which has a worst-case time complexity of <b>O(n<sup>2</sup>)</b>. However, in practice, it's usually much faster (closer to <b>O(n)</b>).</li>
+        <li>partition5 and partition are sorting algorithms with a worst-case complexity of <b>O(n<sup>2</sup>)</b>. But for smaller sub-arrays (like size 5 in partition5), their impact on the overall complexity is negligible.</li>
+        <li>Overall, the dominant factor in the time complexity of the convex hull algorithm is the divide-and-conquer approach used in get_upper_hull and convexUpperHull, leading to a time complexity of <b>O(n log n)</b>.</li>
       </ul>
     </div>
 
-    <nav>
+    <!-- <nav>
         <ul class="button-container">
         <li class="button-right"><a href="{{url_for('kirkpatrick_seidel')}}">&larr; Algo </a></li>
           <li><a href="{{url_for('kps_visualisation')}}">Click here for Visualization</a></li>
+          <li class="button-right"><a href="{{url_for('kps_epilogue')}}">Epilogue &rarr;</a></li>
+        </ul>
+      </nav> -->
+      <nav>
+        <ul class="button-container">
+          <li class="button-right"><a href="{{url_for('kirkpatrick_seidel')}}">&larr; Algo</a></li>
+          <li style="flex: 1;"></li> <!-- Adjusted flex value -->
+          <li><a href="{{url_for('kps_visualisation')}}">Click here for Visualization </a></li>
+          <li style="flex: 1;"></li> <!-- Adjusted flex value -->
           <li class="button-right"><a href="{{url_for('kps_epilogue')}}">Epilogue &rarr;</a></li>
         </ul>
       </nav>

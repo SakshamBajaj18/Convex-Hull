@@ -58,6 +58,7 @@
       display: block;
       margin-left: auto;
       margin-right: auto;
+      margin-top: 10px;
     }
 </style>
 
@@ -86,13 +87,14 @@
         </ul>
 
         <img class="center-image" src="{{ url_for('static', filename='Images/jm-table.png') }}" alt="Jarvis March Algorithm"  width="300" height="auto" />
+        <img class="center-image" src="{{ url_for('static', filename='Images/jm_graph.png') }}" alt="Jarvis March Algorithm"  width="300" height="auto" />
         
     </div>
 
     <h2 id="introduction">BREAKING DOWN THE TIME COMPLEXITY</h2>
     <div class="introduction">
 
-          The Jarvis March algorithm has a time complexity of O(nh) where:
+          The Jarvis March algorithm has a time complexity of <b>O(nh)</b> where:
       </p>
       <ul>
           <li>n is the total number of input points.</li>
@@ -113,7 +115,7 @@
               <p>
                   Within each outer loop iteration, this loop iterates through all points except the current one (n-1 points).
                   Inside the inner loop, the `checkCounterClockWise` function is called, which itself has a constant time complexity (O(1)).
-                  The total number of times the inner loop runs is (n-1) * h  .
+                  The total number of times the inner loop runs is <b>(n-1) * h</b>  .
               </p>
           </li>
           <img class="center-image" src="{{ url_for('static', filename='Images/JM.png') }}" alt="Jarvis March Algorithm"  width="600" height="auto" />
@@ -128,21 +130,21 @@
       </ul>
       <h3>Overall:</h3>
       <p>
-          In the worst case where the convex hull is large compared to the total points or early termination rarely occurs, the time complexity remains O(nh).
-          On average, for datasets with a smaller convex hull or frequent early termination, the time complexity could be closer to O(n log h) or even better in some scenarios.
+          In the worst case where the convex hull is large compared to the total points or early termination rarely occurs, the time complexity remains <b>O(nh)</b>.
+          On average, for datasets with a smaller convex hull or frequent early termination, the time complexity could be closer to <b>O(n log h)</b> or even better in some scenarios.
       </p>
     </div>
 
 
     <nav>
-        <ul class="button-container">
-          <li class="button-right"><a href="{{url_for('jarvis_march')}}">&larr; Algo</a></li>
-          <li style="flex: 2;"></li>
-          <li><a href="{{url_for('jarvis_march_visualisation')}}">Click here for Visualization </a></li>
-          <li style="flex: 1;"></li>
-          <li class="button-right"><a href="{{url_for('jm_epilogue')}}">Epilogue &rarr;</a></li>
-        </ul>
-      </nav>
+      <ul class="button-container">
+        <li class="button-right"><a href="{{url_for('jarvis_march')}}">&larr; Algo</a></li>
+        <li style="flex: 1;"></li> <!-- Adjusted flex value -->
+        <li><a href="{{url_for('jarvis_march_visualisation')}}">Click here for Visualization </a></li>
+        <li style="flex: 1;"></li> <!-- Adjusted flex value -->
+        <li class="button-right"><a href="{{url_for('jm_epilogue')}}">Epilogue &rarr;</a></li>
+      </ul>
+    </nav>
       
     
   <div class="footer">
