@@ -6,13 +6,12 @@ body {
   }
   
   .navbar {
-    background-color: black;
+    background-color: rgb(61, 58, 58);
     overflow: hidden;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 999;
-    padding: 7px;
   }
   
   .navbar ul {
