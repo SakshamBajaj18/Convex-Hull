@@ -19,6 +19,10 @@ def about_us():
 def info():
     return render_template('intro.html')
 
+@app.route('/comparison')
+def comp():
+    return render_template('complexityComp.html')
+
 @app.route('/jarvis-march')
 def jarvis_march():
     return render_template('jarvisalgo.html')
