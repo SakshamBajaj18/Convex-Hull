@@ -101,6 +101,43 @@
 
     <h2 id="introduction">BREAKING DOWN THE TIME COMPLEXITY</h2>
     <div class="introduction">
+
+      <h3>get_upper_bridge(points, median):</h3>
+      <ul>
+            <li> <b>get_upper_bridge</b> runs in O(n) worst-case time complexity.</li>
+            <li>The complexity for aforementioned function is trivially linear for 2 points.</li>
+            <li>At least one quarter of the points are eliminated during recursive calls and hence are not contained in candidate set.</li>
+            <li>Therefore, the recurrence relation can be expressed as \(f(n) = f(\frac{3n}{4}) + O(n)\).</li>
+            <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathJax Example</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="curly-brace">
+        \[
+        f(n) \ =
+        \begin{cases}
+            O(1) & n = 2 \\
+            f(n) = f(\frac{3n}{4}) + O(n) &  n > 2
+
+        \end{cases}
+        \]
+    </div>
+</body>
+</html>
+            <li>Solving this recurrence relation, we find that the time complexity of the algorithm is O(n).</li>
+        
+      </ul>
+      <div style="display: flex; justify-content: center;">
+        <img  src="{{ url_for('static', filename='Images/upperbridge1.png') }}" alt="Jarvis March Algorithm" width="35%" height="auto" style="margin-right: 2.5%;" />
+        <img  src="{{ url_for('static', filename='Images/upperbridge2.png') }}" alt="Jarvis March Algorithm" width="50%" height="auto" />
+</div>
+
+
       <h3>convexUpperHull(points):</h3>
       <ul>
             <li>This function starts by identifying the minimum and maximum points based on their x-coordinates, which takes linear time <b>O(n)</b>, where n is the number of points.</li>
