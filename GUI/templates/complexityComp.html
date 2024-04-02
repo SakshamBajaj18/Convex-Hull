@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DAA ASSIGNMENT</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/navigation.css') }}">
+</head>
+<style>
+    .member {
+      display: flex;
+      background-color: black;
+      border-radius: 1px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black;
+      padding: 0px;
+      max-width: 100%;
+      position: relative;
+    }
+    h1 {
+      margin-top: 70px;
+      text-align: center;
+      color: white;
+      size: 100px;
+    }
+    h2{
+      margin-top: 70px;
+      text-align: center;
+      color: white;
+      size: 100px;
+      margin-left: 0px;
+    
+    }
+
+    .member p {
+      color: white;
+      font-size: 30px;
+      display: flex;
+      justify-content: first baseline;
+    }
+    .introduction {
+      padding: 0 250px;
+      color: white;
+      font-size: 20px;
+      line-height: 1.6;
+    }
+    .introduction ul {
+      list-style-type: disc;
+      margin-left: 0px;
+      justify-content: left;
+    }
+    .center-image {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 10px;
+    }
+</style>
+
+<body>
+    <div class="navbar">
+        <img src="{{ url_for('static', filename='Images/logo.png') }}" alt="logo" /> 
+        <div class="home"><ul> <li><a  href="{{url_for('index')}}">   Home </a></li></ul></div>
+        
+        <ul>
+          <li><a href="{{url_for('about_us')}}">About Us </a></li>
+          <li><a href="{{url_for('info')}}">Info </a></li>
+          <li><a href="{{url_for('comp')}}">Complexity Comparison </a></li>
+        </ul>
+      </div>
+
+  <h1>Run Time Comparison</h1>
+
+    <h2 id="introduction">RUNNING TIME ANALYSIS</h2>
+    <div class = "introduction" style="text-align: justify;">
+        <p>The Jarvis March algorithm has a complexity of <b>O(nh)</b> which in the worst case is of the order <b>O(n^2)</b>. Whereas the 
+        KPS algorithm has a faster runtime complexity of <b>O(nlogh)</b> which in the worst case is of the order <b>O(nlogn)</b></p>
+        
+        <div style="display: flex; align-items: center;">
+          <img class="center-image" src="{{ url_for('static', filename='Images/complexityComparison.jpg') }}" alt="n_squared vs nlogn"  width="80%" height= "80%" />
+        </div>
+        
+        
+    </div>
+
+    <h2 id="introduction">Number of Points vs Time</h2>
+    <div class="introduction" style="text-align: justify;">
+
+        <table style="border-collapse: collapse; width: 50%; margin: 0 auto; text-align: center;">
+            <tr>
+              <th style="border: 1px solid white;">Points</th>
+              <th style="border: 1px solid white;">KPS Time</th>
+              <th style="border: 1px solid white;">JM Time</th>
+            </tr>
+            <tr>
+              <td style="border: 1px solid white;">100</td>
+              <td style="border: 1px solid white;">0.000010046958923</td>
+              <td style="border: 1px solid white;">0.000209574699401</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid white;">1000</td>
+              <td style="border: 1px solid white;">0.000089981555938</td>
+              <td style="border: 1px solid white;">0.004729523658752</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid white;">10000</td>
+              <td style="border: 1px solid white;">0.000965538024902</td>
+              <td style="border: 1px solid white;">0.067919991016387</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid white;">100000</td>
+              <td style="border: 1px solid white;">0.017929205894470</td>
+              <td style="border: 1px solid white;">0.895007848739624</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid white;">1000000</td>
+              <td style="border: 1px solid white;">0.229931738376617</td>
+              <td style="border: 1px solid white;">13.80242057800293</td>
+            </tr>
+          </table>
+          
+      <h3>Overall:</h3>
+      <p>
+        The difference in time taken for the algorithms to complete their processing takes up to 62 times at the 1 million points mark.
+        The difference starts out small but only gets more exaggerated as the number of points increases.
+        This is to be expected as we can see from the graph as well, the difference in the rate of increase of <b>O(n^2)</b> and <b>O(nlogn)</b>.      
+    </p>
+    </div>
+
+
+    <nav>
+      <ul class="button-container">
+        <li class="button-right"><a href="{{url_for('jarvis_march_visualisation')}}">&larr; Jarvis March Visualization</a></li>
+        <li style="flex: 1;"></li> <!-- Adjusted flex value -->
+        <li><a href="{{url_for('info')}}">Info</a></li>
+        <li style="flex: 1;"></li> <!-- Adjusted flex value -->
+        <li class="button-right"><a href="{{url_for('kps_visualisation')}}">KPS Visualization &rarr;</a></li>
+      </ul>
+    </nav>
+      
+    
+  <div class="footer">
+    We, the students of BITS Pilani Hyderabad Campus, have created this webpage, as a part of the Assignment-1 of the course
+  CS F364 - Design and Analysis of Algorithms (DAA).
+  </div>
+</body>
+  
+</html>
