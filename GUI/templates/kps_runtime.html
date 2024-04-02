@@ -100,14 +100,13 @@
     <div class="introduction">
       <h3>convexUpperHull(points):</h3>
       <ul>
-            <li>This function starts by identifying the minimum and maximum points based on their x-coordinates, which takes linear time O(n), where n is the number of points.</li>
+            <li>This function starts by identifying the minimum and maximum points based on their x-coordinates, which takes linear time <b>O(n)</b>, where n is the number of points.</li>
             <li>It then constructs the upper convex hull by recursively subdividing the set of points into two halves based on the line segment defined by the minimum and maximum points.</li>
-            <li>Recursive calls are made to the <code>get_upper_hull</code> function for finding the upper hull of the given set of points.</li>
-            <li><code>get_upper_hull</code> takes a reference point pair <code>(pmin, pmax)</code> and a list of points <code>(points)</code>.</li>
-            <li>In the worst case, <code>get_upper_hull</code> iterates through all points in <code>points</code> to classify them based on their position relative to the line formed by <code>(pmin, pmax)</code>, resulting in a time complexity of <b>O(n)</b>.</li>
-            <li>After classification, <code>get_upper_hull</code> makes recursive calls to itself on the left and right halves of the points, contributing further to the overall complexity.</li>
-            <li>The total time complexity of <code>get_upper_hull</code> can be expressed as <b>T(n) = O(n) + T(n/2) + T(n/2)</b>, which translates to <b>T(n) = O(n log n)</b>> using the Master theorem for divide-and-conquer recurrences.</li>
-            <li>Since <code>convexUpperHull</code> makes two such recursive calls, the overall time complexity becomes <b>O(2 * n log n) = O(n log n).</b></li>
+            <li>Recursive calls are made to the <code><b>get_upper_hull</b></code> function for finding the upper hull of the given set of points.</li>
+            <li><code><b>get_upper_hull</b></code> takes a reference point pair <code>(pmin, pmax)</code> and a list of points <code>(points)</code>.</li>
+            <li>After classification, <code><b>get_upper_hull</b></code> makes recursive calls to itself on the left and right halves of the points, contributing further to the overall complexity.</li>
+            <li>Each recursive call has a time complexity of <b>O(h)</b>, where h is the number of vertices in the upper hull.</li>
+            <li>Since the dominant factor is the recursive construction of the convex hull, and each recursive call has a time complexity of <b>O(h)</b>, where h is the number of vertices in the upper hull, the overall time complexity of the algorithm is <b>O(n log h)</b>.</b></li>
         
       </ul>
       <div style="display: flex;">
@@ -123,26 +122,118 @@
       <h3>convexLowerHull(points):</h3>
       <ul>
         <li>This function transforms the points by negating their x and y coordinates, essentially creating a mirrored copy of the point set.</li>
-        <li>It then calls convexUpperHull on the transformed points.</li>
-        <li>The complexity of this function remains the same as convexUpperHull, which is <b>O(n log n)</b>.</li>
+        <li>It then calls <b>convexUpperHull</b> on the transformed points.</li>
+        <li>The complexity of this function remains the same as <b>convexUpperHull</b>, which is <b>O(n log h)</b>.</li>
       </ul>
       <img class="center-image" src="{{ url_for('static', filename='Images/lowerhull.png') }}" alt="Jarvis March Algorithm"  width="600" height="auto" />
       
       <h3>convexHull(points):</h3>
       <ul>
-        <li>This function calls convexUpperHull and convexLowerHull to find the upper and lower hulls of the point set.</li>
+        <li>This function calls <b>convexUpperHull</b> and <b>convexLowerHull</b> to find the upper and lower hulls of the point set.</li>
         <li>It then combines the results and removes duplicate points at the intersection of the hulls.</li>
-        <li>The dominant factors in the complexity are the two calls to convexUpperHull and convexLowerHull, both with <b>O(n log n) </b>complexity.</li>
-        <li>Therefore, the overall complexity of convexHull is also <b>O(n log n)</b>.</li>
+        <li>The dominant factors in the complexity are the two calls to <b>convexUpperHull</b> and <b>convexLowerHull</b>, both with <b>O(n log h) </b>complexity.</li>
+        <li>Therefore, the overall complexity of convexHull is also <b>O(n log h)</b>.</li>
       </ul>
       <img class="center-image" src="{{ url_for('static', filename='Images/hull.png') }}" alt="Jarvis March Algorithm"  width="600" height="auto" />
       
       <h3>Other functions:</h3>
       <ul>
-        <li>find_median_points and find_median_slope use quickselect which has a worst-case time complexity of <b>O(n<sup>2</sup>)</b>. However, in practice, it's usually much faster (closer to <b>O(n)</b>).</li>
-        <li>partition5 and partition are sorting algorithms with a worst-case complexity of <b>O(n<sup>2</sup>)</b>. But for smaller sub-arrays (like size 5 in partition5), their impact on the overall complexity is negligible.</li>
-        <li>Overall, the dominant factor in the time complexity of the convex hull algorithm is the divide-and-conquer approach used in get_upper_hull and convexUpperHull, leading to a time complexity of <b>O(n log n)</b>.</li>
+        <li>In <b>quickselect</b>, the partitioning step divides the input array into two parts around the chosen pivot. With the median of medians pivot selection, the partitioning step takes <b>O(n)</b> time in the worst case since the pivot is guaranteed to be approximately the median of the array.</b></li>
+        <li><b>partion5</b> runs in linear time complexity <b>O(n)</b> because it returns the median from an array of length 5. <b>partion</b> runs in <b>O(n)</b> time complexity as well.</li>
+        <li>Overall, the dominant factor in the time complexity of the convex hull algorithm is the divide-and-conquer approach used in <b>get_upper_hull</b> and <b>convexUpperHull</b>, leading to a time complexity of <b>O(n log h)</b>.</li>
       </ul>
+    </div>
+
+    <div style="display: flex; align-items: center;">
+      <div style="padding: 10px;">
+          <img class="center-image" src="{{ url_for('static', filename='Images/mom.png') }}" alt="Jarvis March Algorithm" width="50%" height="auto" />
+      </div>
+      <div style="  padding: 10px;">
+          <img class="center-image" src="{{ url_for('static', filename='Images/partition.png') }}" alt="Jarvis March Algorithm" width="50%" height="auto" />
+      </div>
+  </div>
+
+
+    <h2 id="introduction">MATHEMATICAL ANALYSIS</h2>
+    <div class="introduction">
+      
+      <ul>
+            <li><b>get_upper_bridge</b> and <b>median_of_medians</b> run in <b>O(n)</b> worst case</li>
+            <li><b>get_upper_hull</b> takes <b>O(n log h)</b>
+              <br><br>
+              Proof:
+              <br>
+              <p>Let \( T(n,h) \) be the recurrence relation, where \( c \) is a constant and \( n \geq h > 1 \). \( h_l \) and \( h_r \) are the number of upper hull edges in recursive calls for the left and right side.</p>
+
+              <br>
+              
+              <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathJax Example</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="curly-brace">
+        \[
+        T(n,h) \leq
+        \begin{cases}
+            cn & \text{if } h = 2 \\
+            \max\left(\left(T\left(\frac{n}{2}, h_l\right), T\left(\frac{n}{2}, h_r\right)\right) \mid h_l + h_r + 1 = h\right) & \text{otherwise}
+
+        \end{cases}
+        \]
+    </div>
+</body>
+</html>
+
+              <br>
+              <p>Suppose the two occurrences of \( O(n) \) in the above recurrence are at most \( cn \), where \( c \) is a suitably large constant. We will show by induction on \( h \) that \( T(n,h) \leq cn \log h \) for all \( n \) and \( h \geq 2 \).</p>
+
+              <br><br>
+
+              For the base case where h = 2,
+              <br><br>
+              <p style="text-align:center;">\[ T(n,h) \leq cn \leq cn \log 2 = cn \log h \]</p>
+              <br>
+              For the inductive case,
+              <br>
+              <br>        
+              <div style="text-align: center;">
+                <div>
+                    \( T(n, h) ≤ cn + \max\limits_{h_1} \left\{ c\frac{n}{2} \log h_{1} + c\frac{n}{2} \log(h-1-h_{1}) \right\} \)
+                </div>
+                <div>
+                    \( T(n, h) = cn + c\frac{n}{2} \max\limits_{h_1}   \log(h_{1}(h-1-h_{1})) \)
+                </div>
+                <div>
+                    \( T(n, h) ≤ cn + c\frac{n}{2} \log\left(\frac{h}{2}\cdot\frac{h}{2}\right) \)
+                </div>
+                <div>
+                    \( T(n, h) = cn + c\frac{n}{2} \cdot 2 \log\left(\frac{h}{2}\right) \)
+                </div>
+                <div>
+                    \( T(n, h) = cn \log h \)
+                </div>
+            </div>
+            
+            
+              
+              
+              
+              
+              
+              
+              
+
+              
+          </li>
+          
+      </ul>
+      
     </div>
 
     <!-- <nav>
