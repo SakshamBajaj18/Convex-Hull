@@ -1,5 +1,5 @@
 from bokeh.plotting import figure, curdoc
-from bokeh.models import ColumnDataSource, CustomJS, ColumnDataSource, HoverTool, TapTool, PointDrawTool, Button, WheelZoomTool, ResetTool, BoxZoomTool, FileInput
+from bokeh.models import ColumnDataSource, CustomJS, ColumnDataSource, HoverTool, TapTool, PointDrawTool, Button, WheelZoomTool, ResetTool, BoxZoomTool, FileInput, PanTool
 import math
 from bokeh.layouts import column, row
 from bokeh.io import curdoc
@@ -31,7 +31,7 @@ p.add_tools(draw_tool)
 p.add_tools(WheelZoomTool())
 p.add_tools(ResetTool(name="Reset Zoom"))
 p.add_tools(BoxZoomTool())
-
+p.add_tools(PanTool())
 
 
 def generate_random_points(n):
@@ -77,7 +77,7 @@ line1=[]
 line2=[]
 line3=[]
 count=0
-delay_time=50
+delay_time=500
 flag=0
 queued_functions=[]
 skip_flag=False
@@ -167,13 +167,9 @@ def jarvis_march(points):
             timeoutId4= curdoc().add_timeout_callback(partial(remove_dashed_lines,line2),count*delay_time)
             queued_functions.append(timeoutId4)
             count+=1
-            # plt.pause(0.05)
-        # line3.pop().remove()
         timeoutId2=curdoc().add_timeout_callback(partial(remove_dashed_lines,line3),count*delay_time)
         queued_functions.append(timeoutId2)
         count+=1
-        # print(delay_time)
-        # plt.plot([current[0], next_point[0]], [current[1], next_point[1]], color = 'green')
         draw_solid_line([current[0], next_point[0]], [current[1], next_point[1]])
         count+=1
         
@@ -184,13 +180,29 @@ def jarvis_march(points):
     return hull
 
 def set_button_disabled():
+    clear_button.disabled = False
+    clear_button.button_type = "danger"
     submit_button.disabled = False
     submit_button.button_type = "success"
+    show_solution.disabled = False
+    show_solution.button_type = "light"
+    generate_hundred_points.disabled = False
+    generate_hundred_points.button_type = "light"
+    generate_thousand_points.disabled = False
+    generate_thousand_points.button_type = "light"
 
 def compute_convex_hull():
     submit_button.disabled = True
     submit_button.button_type = "warning"
-    global count, line1, line2, line3,renderers_line,delay_time,flag,skip_flag
+    clear_button.disabled = True
+    clear_button.button_type = "warning"
+    show_solution.disabled = True
+    show_solution.button_type = "warning"
+    generate_hundred_points.disabled = True
+    generate_hundred_points.button_type = "warning"
+    generate_thousand_points.disabled = True
+    generate_thousand_points.button_type = "warning"
+    global count, line1, line2, line3,renderers_line,delay_time,flag,skip_flag,queued_functions
     skip_flag=False
     points = list(zip(source.data['x'], source.data['y']))
     
@@ -200,9 +212,9 @@ def compute_convex_hull():
         return
     
     points=[(point[0],point[1]) for point in points]
-    delay_time=50
+    delay_time=500
     if(100>len(points)>50):
-        delay_time=25
+        delay_time=50
     elif(len(points)>100):
         flag=1
     elif(1000>len(points)>500):
@@ -220,14 +232,21 @@ def compute_convex_hull():
     line2 = []
     line3 = []
     if(flag==1):
-        delay_time=5
+        delay_time=10
     elif(flag==2):
         delay_time=1
     convex_hull_points = jarvis_march(points)
-    curdoc().add_timeout_callback(set_button_disabled, count*delay_time)
+    tid=curdoc().add_timeout_callback(partial(plot_hull_points,convex_hull_points), count*delay_time)
+    count+=1
+    queued_functions.append(tid)
+    tid=curdoc().add_timeout_callback(set_button_disabled, count*delay_time)
+    queued_functions.append(tid)
     count=0
     delay_time=0
 
+def plot_hull_points(points):
+    global renderers_line
+    renderers_line.append(p.scatter(x=[point[0] for point in points],y=[point[1] for point in points],color='blue',size=renderer.glyph.size))
 
 def compute_convex_hull_without_plot():
     global renderers_line
@@ -265,6 +284,7 @@ def compute_convex_hull_without_plot():
         return hull
 
     convex_hull=jarvis_march_without_plot(points)
+    renderers_line.append(p.scatter(x=[point[0] for point in convex_hull],y=[point[1] for point in convex_hull],color='blue',size=renderer.glyph.size))
     for i in range(len(convex_hull)):
         line=p.line(x=[convex_hull[i][0],convex_hull[(i+1)%len(convex_hull)][0]],y=[convex_hull[i][1],
             convex_hull[(i+1)%len(convex_hull)][1]],line_color="green",line_width=2)

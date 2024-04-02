@@ -1,5 +1,5 @@
 from bokeh.plotting import figure, curdoc
-from bokeh.models import ColumnDataSource, CustomJS, ColumnDataSource, HoverTool, TapTool, PointDrawTool, Button, WheelZoomTool, ResetTool, BoxZoomTool, FileInput
+from bokeh.models import ColumnDataSource, CustomJS, ColumnDataSource, HoverTool, TapTool, PointDrawTool, Button, WheelZoomTool, ResetTool, BoxZoomTool, FileInput, PanTool
 import math
 from bokeh.layouts import column, row
 from bokeh.io import curdoc
@@ -23,9 +23,11 @@ draw_tool = PointDrawTool(renderers=[renderer], empty_value='black')
 p.add_tools(draw_tool)
 
 # Add wheel zoom, reset and box zoom tools
+
 p.add_tools(WheelZoomTool())
 p.add_tools(ResetTool(name="Reset Zoom"))
 p.add_tools(BoxZoomTool())
+p.add_tools(PanTool())
 
 renderers_line=[]
 delay_flag=0
@@ -338,6 +340,7 @@ def compute_without_plot():
     
     convex_hull=convexHull(points)
 
+    renderers_line.append(p.scatter(x=[point[0] for point in convex_hull],y=[point[1] for point in convex_hull],color='blue',size=renderer.glyph.size))
     for i in range(len(convex_hull)):
         line=p.line(x=[convex_hull[i][0],convex_hull[(i+1)%len(convex_hull)][0]],y=[convex_hull[i][1],
             convex_hull[(i+1)%len(convex_hull)][1]],line_color="green",line_width=2)
@@ -759,6 +762,14 @@ def compute_convex_hull():
     
     submit_button.disabled = True
     submit_button.button_type = "warning"
+    clear_button.disabled = True
+    clear_button.button_type = "warning"
+    show_solution.disabled = True
+    show_solution.button_type = "warning"
+    generate_hundred_points.disabled = True
+    generate_hundred_points.button_type = "warning"
+    generate_thousand_points.disabled = True
+    generate_thousand_points.button_type = "warning"
     points = list(zip(source.data['x'], source.data['y']))
     if len(points) < 3:
         print("At least 3 points are required to form a convex hull")
@@ -796,13 +807,28 @@ def compute_convex_hull():
     #     delay_time=150
 
     convex_hull=convexHull(points)
+    tid=curdoc().add_timeout_callback(partial(plot_hull_points,convex_hull), count*delay_time)
+    queued_functions.append(tid)
+    count+=1
     tid=curdoc().add_timeout_callback(set_button_disabled, count*delay_time)
     queued_functions.append(tid)
     count=0
-    
+
+def plot_hull_points(points):
+    global renderers_line
+    renderers_line.append(p.scatter(x=[point[0] for point in points],y=[point[1] for point in points],color='blue',size=renderer.glyph.size))
+
 def set_button_disabled():
+    clear_button.disabled = False
+    clear_button.button_type = "danger"
     submit_button.disabled = False
     submit_button.button_type = "success"
+    show_solution.disabled = False
+    show_solution.button_type = "light"
+    generate_hundred_points.disabled = False
+    generate_hundred_points.button_type = "light"
+    generate_thousand_points.disabled = False
+    generate_thousand_points.button_type = "light"
 
 skip_flag=False
 
