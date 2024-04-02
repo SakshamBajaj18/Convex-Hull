@@ -1,5 +1,4 @@
-from flask import Flask, render_template, request, jsonify
-# from convex_hull_algorithms import quickhull  # Import your convex hull algorithm
+from flask import Flask, render_template
 from flask_cors import CORS
 from bokeh.embed import server_document
 

@@ -141,18 +141,15 @@
       <h3>Other functions:</h3>
       <ul>
         <li>In <b>quickselect</b>, the partitioning step divides the input array into two parts around the chosen pivot. With the median of medians pivot selection, the partitioning step takes <b>O(n)</b> time in the worst case since the pivot is guaranteed to be approximately the median of the array.</b></li>
-        <li><b>partion5</b> runs in linear time complexity <b>O(n)</b> because it returns the median from an array of length 5. <b>partion</b> runs in <b>O(n)</b> time complexity as well.</li>
-        <li>Overall, the dominant factor in the time complexity of the convex hull algorithm is the divide-and-conquer approach used in <b>get_upper_hull</b> and <b>convexUpperHull</b>, leading to a time complexity of <b>O(n log h)</b>.</li>
+        <li><b>partition5</b> runs in constant time complexity <b>O(1)</b> because it returns the median from an array of length 5. <b>partition</b> runs in <b>O(n)</b> time complexity as it involves
+          shifting elements of an array with respect to the pivot element.</li>
+        <li>Overall, the dominant factor in the time complexity of the convex hull algorithm is the divide-and-conquer approach used in <b>get_upper_hull</b> and <b>convexUpperHull</b>, leading to an average time complexity of <b>O(n log h)</b>.</li>
       </ul>
     </div>
 
-    <div style="display: flex; align-items: center;">
-      <div style="padding: 10px;">
-          <img class="center-image" src="{{ url_for('static', filename='Images/mom.png') }}" alt="Jarvis March Algorithm" width="50%" height="auto" />
-      </div>
-      <div style="  padding: 10px;">
-          <img class="center-image" src="{{ url_for('static', filename='Images/partition.png') }}" alt="Jarvis March Algorithm" width="50%" height="auto" />
-      </div>
+    <div style="display: flex; justify-content: center;">
+          <img  src="{{ url_for('static', filename='Images/mom.png') }}" alt="Jarvis March Algorithm" width="30%" height="auto" style="margin-right: 2.5%;" />
+          <img  src="{{ url_for('static', filename='Images/partition.png') }}" alt="Jarvis March Algorithm" width="25%" height="auto" />
   </div>
 
 
