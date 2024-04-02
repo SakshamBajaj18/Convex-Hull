@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>INTRODUCTION</title>
+  <title>DAA ASSIGNMENT</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/navigation.css') }}">
 </head>
@@ -23,7 +23,7 @@
       position: relative;
     }
     h1 {
-      margin-top: 70px;
+      margin-top: 3%;
       text-align: center;
       color: white;
       size: 100px;
@@ -62,34 +62,46 @@
     
     <ul>
       <li><a href="{{url_for('about_us')}}">About Us </a></li>
-      <li><a href="{{url_for('info')}}">Info </a></li>
-      
+          <li><a href="{{url_for('info')}}">Info </a></li>
+          <li><a href="{{url_for('comp')}}">Complexity Comparison </a></li>
+          <li><a  href="{{url_for('jarvis_march')}}">   Jarvis March </a></li>
+          <li><a  href="{{url_for('kirkpatrick_seidel')}}">   KPS </a></li>
     </ul>
   </div>
 
   <h1>INTRODUCTION</h1>
 
   <div class="introduction" style="text-align: justify;">
-    <p>A convex hull algorithm is a fundamental concept in computational geometry used to find the smallest convex polygon that encloses a set of points in a plane. It has numerous applications in various fields such as computer graphics, geographic information systems, robotics, and image processing.</p>
+    <p>A convex hull algorithm is a fundamental concept in computational geometry used to find the smallest convex polygon that encloses a set of 
+      points in a plane. It has numerous applications in various fields such as computer graphics, geographic information systems, robotics, and 
+      image processing.</p>
     
-    <p>In simple words, imagine you have a collection of nails on a flat surface. Now, take a rubber band and stretch it around the outermost nails, ensuring that it encloses all the nails within it and that it doesn't have any concavities or dents. The rubber band should be pulled tight so that it hugs the outer boundary of the nails.
+    <p>In simple words, imagine you have a collection of nails on a flat surface. Now, take a rubber band and stretch it around the outermost 
+      nails, ensuring that it encloses all the nails within it and that it doesn't have any concavities or dents. The rubber band should be pulled 
+      tight so that it hugs the outer boundary of the nails.
       In this analogy, the nails represent points in a geometric space and the rubber band represents the convex hull of those points.
     </p>
     
-    <p>The implementation of convex hull algorithms involves several techniques, including Jarvis march (gift wrapping) and Kirk Patrick Seidel algorithm. These algorithms differ in their approach and efficiency, but they all aim to efficiently compute the convex hull of a given set of points.</p>
+    <p>There are several famous algorithms which aim to compute the convex hull in the shortest period of time, such as the Graham Scan, Chan's 
+      Algorithm, Jarvis March, Kirkpatrick Seidel, and many more.
+    </p>
 
-    <p>Jarvis march, for instance, repeatedly finds the point with the smallest polar angle relative to the current point and adds it to the convex hull, while the 
-      Kirkpatrick-Seidel algorithm iteratively divides the point set into smaller subsets, constructing convex layers of increasing granularity until the convex hull is formed, 
-      leveraging the concept of extreme points and triangulation to efficiently compute the convex hull.</p>
+    <p>The visualization of these convex hull computing algorithms serves to analyse and explain the beauty behind complex calculations carried 
+      out by a computer program. Being able to see how the algorithm works step by step promotes the understanding of an algorithm, perhaps also 
+      providing a guiding light towards a more efficient algorithm.
+    </p>
 
-      <p>Implementing convex hull algorithms requires a solid understanding of data structures and computational geometry principles. Efficiency considerations are also crucial, as the performance of these algorithms can vary depending on the size and distribution of the input points. Additionally, handling degenerate cases and ensuring robustness against numerical errors are important aspects of implementation.
-      </p>
+    <p>For the purpose of this assignment we have implemented the visualization of:</p>
+<ul>
+  <li>Jarvis March: An algorithm that repeatedly finds the point with the smallest polar angle relative to the current point and adds it to the convex hull.</li>
+  <li>Kirkpatrick-Seidel algorithm: This algorithm iteratively divides the point set into smaller subsets, constructing convex layers of increasing granularity until the convex hull is formed. It leverages the concept of extreme points and triangulation to efficiently compute the convex hull.</li>
+</ul>
+
     </div>
 
-    <h2 id="introduction">ALGORITHMS IMPLEMENTED</h2>
+    <h2 id="introduction">Further Information On Implemented Algorithms</h2>
     
     <div class = "introduction">
-        <p>As a part of this assignment, we have implemented the following algorithms:</p>
         <ul id="introduction">
             <li><a href="{{url_for('jarvis_march')}}" style="color: rgb(238, 238, 235);">Jarvis March Algorithm</a></li>
             <li><a href="{{url_for('kirkpatrick_seidel')}}" style="color: rgb(238, 238, 235);">Kirk Patrick Seidel Algorithm</a></li>

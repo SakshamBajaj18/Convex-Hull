@@ -23,7 +23,7 @@
       position: relative;
     }
     h1 {
-      margin-top: 70px;
+      margin-top: 3%;
       text-align: center;
       color: white;
       size: 100px;
@@ -68,15 +68,17 @@
     
     <ul>
       <li><a href="{{url_for('about_us')}}">About Us </a></li>
-      <li><a href="{{url_for('info')}}">Info </a></li>
-      
+          <li><a href="{{url_for('info')}}">Info </a></li>
+          <li><a href="{{url_for('comp')}}">Complexity Comparison </a></li>
+          <li><a  href="{{url_for('jarvis_march')}}">   Jarvis March </a></li>
+          <li><a  href="{{url_for('kirkpatrick_seidel')}}">   KPS </a></li>
     </ul>
   </div>
 
   <h1>KIRK-PATRICK SEIDEL ALGORITHM</h1>
 
     <h2 id="introduction">OTHER CONSIDERATIONS</h2>
-    <div class="introduction">
+    <div class="introduction" style="text-align: justify;">
         <ul id="introduction">
             <li>Jarvis March is a relatively simple algorithm to understand and implement.</li>
             <li>It performs well when the number of points in the hull is small compared to the total number of points.</li>
@@ -88,7 +90,7 @@
     </div>
 
     <h2 id="introduction">CONCLUSION</h2>
-    <div class="introduction">
+    <div class="introduction" style="text-align: justify;">
         <p>In conclusion, determining the convex hull of a set of points in the plane can be done quite well with the help of the Kirkpatrick-Seidel algorithm. The method achieves an O(n log h) time complexity by using a divide-and-conquer technique and taking use of convex hull features. Here, n represents the number of input points and h denotes the number of points on the convex hull. The Kirkpatrick-Seidel method offers a strong and dependable solution for convex hull calculation through careful point management throughout the recursive process, including median-based splitting, eliminating non-contributing points, and merging upper and lower hulls. Because of its effective performance, it is the go-to option for many applications in computational geometry and related domains.</p>
     </div>
 

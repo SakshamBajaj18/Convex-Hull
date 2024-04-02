@@ -23,7 +23,7 @@
       position: relative;
     }
     h1 {
-      margin-top: 70px;
+      margin-top: 3%;
       text-align: center;
       color: white;
       size: 100px;
@@ -68,21 +68,23 @@
     
     <ul>
       <li><a href="{{url_for('about_us')}}">About Us </a></li>
-      <li><a href="{{url_for('info')}}">Info </a></li>
-      
+          <li><a href="{{url_for('info')}}">Info </a></li>
+          <li><a href="{{url_for('comp')}}">Complexity Comparison </a></li>
+          <li><a  href="{{url_for('jarvis_march')}}">   Jarvis March </a></li>
+          <li><a  href="{{url_for('kirkpatrick_seidel')}}">   KPS </a></li>
     </ul>
   </div>
 
   <h1>KIRK-PATRICK SEIDEL ALGORITHM</h1>
 
-  <div class="introduction">
+  <div class="introduction" style="text-align: justify;">
     <p>The Kirk-Patrick Seidel Algorithm is a computational geometry algorithm used to find the convex hull of a set of points in the plane. The convex hull is the smallest possible convex polygon that encloses all points in the given set. It is also called Prune-and-Search algorithm.</p>
     
     </div>
 
     <h2 id="introduction">WORKING OF THE ALGORITHM</h2>
     
-    <div class = "introduction">
+    <div class = "introduction" style="text-align: justify;">
         <p>The basic idea of the KPS algorithm is a type of reversal of the divide-and-conquer algorithm for convex hulls. This algorithm tells us to divide the problem into subproblems, solve the subproblems, and finally merge the subsolutions.</p>
         <ol>
             <li><u>Finding Median of Medians:</u> First step is to find median of x-coordinate of points, and dividing the point set into two halves using this median.</li>
