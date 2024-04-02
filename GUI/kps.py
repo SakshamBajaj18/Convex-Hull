@@ -115,8 +115,6 @@ def partition5(arr, left, right):
             j-=1
     return arr[left + (right-left)//2]
 
-
-
 def partition(arr, low, high, pivot_value):
     pivot_index=arr.index(pivot_value)
     arr[pivot_index], arr[high] = arr[high], arr[pivot_index]
