@@ -137,19 +137,6 @@
     <div class="introduction" style="text-align: justify;">
       <h3 style="color: rgb(247, 247, 141);">2. distance(p1, p2):</h3>
 
-        <!-- <p><strong>Mechanism of the function:</strong></p>
-    
-        <ul>
-            <li>It computes the difference in x-coordinates (<em>dx</em>) and y-coordinates (<em>dy</em>) between <em>p1</em> and <em>p2</em>.</li>
-            <li>It then applies the Euclidean distance formula: \( \sqrt{ (x2 - x1)^2 + (y2 - y1)^2 } \).</li>
-            <li>Finally, it returns the computed distance.</li>
-
-        </ul>
-        <br>
-        <img class="center-image" src="{{ url_for('static', filename='Images/distance.png') }}" alt="Jarvis March Algorithm"  width="600" height="auto" />
-        <br> -->
-          
-    
 
         <p><strong style="color: rgb(132, 221, 251);">Input:</strong></p>
 
@@ -202,11 +189,312 @@
 
     </div>
     
+    <br><br><br>
+
+    <h1>KIRKPATRICK SEIDEL ALGORITHM</h1>
+    <h2 id="introduction">FUNCTIONS</h2>
+    <div class="introduction" style="text-align: justify;">
+      <h3 style="color: rgb(247, 247, 141);">1. get_upper_bridge(points, median):</h3>
 
 
+             <p><strong style="color: rgb(132, 221, 251);">Input:</strong></p>
+              <ul>
+                <li>points: A list of tuples representing 2D points. Each tuple should contain the x and y coordinates of a point (each point represented as a tuple of (x, y) coordinates).</li>
+                <li>median: The median x-coordinate of the points.</li>
+              </ul>
+
+            <p><strong style="color: rgb(132, 221, 251);">Output:</strong></p>
+
+            <ul>
+              <li>upper bridge: A tuple of points such that they form the upper bridge of the input points and the x coordinates of which lay on either side (or on) the median line.</li>
+            </ul>
+
+            <p><strong style="color: rgb(132, 221, 251);">Mechanism of the function:</strong></p>
 
     
+        <ul>
+            <li>The <b>get_upper_bridge</b> function initially handles base cases, checking if the number of points is 1 or 2, returning appropriately sorted points or the single point if applicable.</li>
+            <li>It forms pairs of points sorted based on their x-coordinate and calculates slopes between each pair, categorizing them into SMALL, LARGE, or EQUAL based on their relationship with the median slope which it finds using the <b>find_median_slope</b> function.</li>
+            <li>After partitioning the pairs, it calculates the maximum possible slope for the upper bridge and identifies the leftmost and rightmost points on the upper bridge using this slope.</li>
+            <li>Depending on the position of these points relative to the median, it updates candidate points accordingly and recursively calls itself with the updated candidates until the upper bridge is found.</li>
+            <li>Finally, it returns the leftmost and rightmost points of the upper bridge.</li>
+        </ul>
+    </div>
+    <br><br>
+    <div class="introduction" style="text-align: justify;">
+      
+
+      <h3 style="color: rgb(247, 247, 141);">2. get_upper_hull(pmin, pmax, points):</h3>
+
+
+      <p><strong style="color: rgb(132, 221, 251);">Input:</strong></p>
+       <ul>
+         <li>pmin: coordinate with the minimum x coordinate. If two points have the same minimum x coordinates then pmin is the one with greater y coordinate.</li>
+         <li>pmax: coordinate with the maximum x coordinate. If two points have the same maximum x coordinates then pmax is the one with greater y coordinate.</li>
+         <li>points: A list of tuples representing 2D points. Each tuple should contain the x and y coordinates of a point (each point represented as a tuple of (x, y) coordinates).</li>
+       </ul>
+
+     <p><strong style="color: rgb(132, 221, 251);">Output:</strong></p>
+
+     <ul>
+       <li>upper hull: A list of tuples of points in the form '(x,y)' that make up the upper hull of the set of points.</li>
+     </ul>
+
+     <p><strong style="color: rgb(132, 221, 251);">Mechanism of the function:</strong></p>
+
+
+      <ul>
+          <li>The <b>get_upper_hull</b> function begins by checking if the minimum and maximum points are the same. If they are, it returns a list containing a single tuple representing that point.</li>
+          <li>It calculates the median of the given points using the <b>find_median_points</b> function.</li>
+          <li>The upper bridge is determined by calling the <b>get_upper_bridge</b> function with the points and the calculated median.</li>
+          <li>If the number of points returned by <b>get_upper_bridge</b> is greater than equal to 2, the function selects pl and pr as the left and right point of the upper bridge.</li>
+          <li>Lists pointsToLeft and pointsToRight are initialized to store points on the left and right sides of the pmin-pl line and pmax-pr line, respectively.</li>
+          <li>Distances are calculated for each point relative to the above mentioned lines, and points are assigned to either pointsToLeft or pointsToRight based on their position.</li>
+          <li>The function is recursively called with the pointsToLeft and pointsToRight lists, and the upper hull is constructed by combining the results of the recursive calls.</li>
+          <li>The upper hull is returned as a list of tuples representing the vertices of the upper hull.</li>
+      </ul>
+    </div>
     
+    <br><br>
+
+    
+    <div class="introduction" style="text-align: justify;">
+    <h3 style="color: rgb(247, 247, 141);">3. convexUpperHull(points)</h3>
+
+
+    <p><strong style="color: rgb(132, 221, 251);">Input:</strong></p>
+     <ul>
+       <li>points: A list of tuples representing 2D points. Each tuple should contain the x and y coordinates of a point (each point represented as a tuple of (x, y) coordinates).</li>
+     </ul>
+
+   <p><strong style="color: rgb(132, 221, 251);">Output:</strong></p>
+
+   <ul>
+     <li>upper hull: A list of tuples of points in the form '(x,y)' that make up the upper hull of the set of points given in cyclic order. 
+      Basically, reduces the edges returned by <b>get_upper_hull</b> into points of upper hull in cyclic order</li>
+   </ul>
+
+   <p><strong style="color: rgb(132, 221, 251);">Mechanism of the function:</strong></p>
+
+
+<ul>
+   <li>The <b>convexUpperHull</b> function initializes pmin and pmax with initial values representing negative and positive infinity, respectively, using the math.inf constant.
+     It then iterates through the given points to find the minimum and maximum points based on their x and y coordinates.  </li>
+     <li>It then creates a list 'points_merge' consisting of points lying above the pmin-pmax line, effectively pruning the rest out.</li>
+     <li>It then calls the function <b>get_upper_hull</b> with pmin, pmax and points_merge list and recieves a upper hull consisting of edges. It decomposes these edges into a list of tuples 
+      of points in the form of '(x , y)' present in cyclic order. It then returns this upper hull which is a list of tuples.</li>
+</ul>
+</div>
+   <br><br> 
+
+   <div class="introduction" style="text-align: justify;">
+      
+
+    <h3 style="color: rgb(247, 247, 141);">4. convexLowerHull(points):</h3>
+
+
+    <p><strong style="color: rgb(132, 221, 251);">Input:</strong></p>
+     <ul>
+       <li>points: A list of tuples representing 2D points. Each tuple should contain the x and y coordinates of a point (each point represented as a tuple of (x, y) coordinates).</li>
+     </ul>
+
+   <p><strong style="color: rgb(132, 221, 251);">Output:</strong></p>
+
+   <ul>
+     <li>lower hull: A list of tuples of points in the form '(x,y)' that make up the lower hull of the set of points.</li>
+   </ul>
+
+   <p><strong style="color: rgb(132, 221, 251);">Mechanism of the function:</strong></p>
+
+
+    <ul>
+        <li>The <b>convexLowerHull</b> function first negates both the x and y coordinates of each point in the input list, effectively reflecting the points across the origin.</li>
+        <li>It then calls the <b>convexUpperHull</b> function with the reflected points to obtain the upper hull of the reflected points. After obtaining the upper hull, the function negates the x and y coordinates of each point in the upper hull to restore them to their original positions.</li>
+        <li>Finally, the function returns the upper hull of the reflected points, which is the lower hull of the original points.</li>
+    </ul>
+  </div>
+  
+  <br><br>
+
+  <div class="introduction" style="text-align: justify;">
+      
+
+    <h3 style="color: rgb(247, 247, 141);">5. convexHull(points):</h3>
+
+
+    <p><strong style="color: rgb(132, 221, 251);">Input:</strong></p>
+     <ul>
+       <li>points: A list of tuples representing 2D points. Each tuple should contain the x and y coordinates of a point (each point represented as a tuple of (x, y) coordinates).</li>
+     </ul>
+
+   <p><strong style="color: rgb(132, 221, 251);">Output:</strong></p>
+
+   <ul>
+     <li>convex hull (lowerHull+upperHull): A list of tuples of points in the form '(x,y)' that make up the convex hull of the set of points.</li>
+   </ul>
+
+   <p><strong style="color: rgb(132, 221, 251);">Mechanism of the function:</strong></p>
+
+
+    <ul>
+        <li>The <b>convexHull</b>  function first computes the upper hull and lower hull separately using the <b>convexUpperHull</b> and <b>convexLowerHull</b> functions, respectively.</li>
+        <li>Then, it checks if there are common points between the upper and lower hulls. If so, it removes duplicate points to avoid redundancy.</li>
+        <li>Finally, it concatenates the lower hull and upper hull to form the convex hull and returns the result.</li>
+    </ul>
+  </div>
+  
+  <br><br>
+
+  <div class="introduction" style="text-align: justify;">
+      
+
+    <h3 style="color: rgb(247, 247, 141);">6. find_median_points(points):</h3>
+
+
+    <p><strong style="color: rgb(132, 221, 251);">Input:</strong></p>
+     <ul>
+       <li>points: A list of tuples representing 2D points. Each tuple should contain the x and y coordinates of a point (each point represented as a tuple of (x, y) coordinates).</li>
+     </ul>
+
+   <p><strong style="color: rgb(132, 221, 251);">Output:</strong></p>
+
+   <ul>
+      <li>median: The median x-coordinate of the points.</li>
+   </ul>
+
+   <p><strong style="color: rgb(132, 221, 251);">Mechanism of the function:</strong></p>
+
+
+    <ul>
+        <li>The <b>find_median_points</b> function calls on the <b>quickselect</b> function which uses medians of medians to find pivot element and partition the points based on the x-coordinate to find the median.</li>
+    </ul>
+  </div>
+  
+  <br><br>
+
+  <div class="introduction" style="text-align: justify;">
+      
+
+    <h3 style="color: rgb(247, 247, 141);">7. find_median_slope(slopes):</h3>
+
+
+    <p><strong style="color: rgb(132, 221, 251);">Input:</strong></p>
+     <ul>
+       <li>slopes: A list representing the slopes of lines connecting each pair of points.</li>
+     </ul>
+
+   <p><strong style="color: rgb(132, 221, 251);">Output:</strong></p>
+
+   <ul>
+      <li>median_slope: The median slope of the given slopes.</li>
+   </ul>
+
+   <p><strong style="color: rgb(132, 221, 251);">Mechanism of the function:</strong></p>
+
+
+    <ul>
+        <li>The <b>find_median_slope</b> function calls on the <b>quickselect</b> function which uses medians of medians to find pivot element and partition the slopes to find the median slope.</li>
+    </ul>
+  </div>
+  
+  <br><br>
+
+  <div class="introduction" style="text-align: justify;">
+      
+
+    <h3 style="color: rgb(247, 247, 141);">8. quickselect(arr, low, high, k):</h3>
+
+
+    <p><strong style="color: rgb(132, 221, 251);">Input:</strong></p>
+     <ul>
+       <li>arr: A list of elements of which median is to be found.</li>
+       <li>low: The starting index in consideration.</li>
+       <li>high: The ending index in consideration.</li>
+       <li>k: The kth smallest element to be found.</li>
+     </ul>
+
+   <p><strong style="color: rgb(132, 221, 251);">Output:</strong></p>
+
+   <ul>
+      <li>element of arr: The kth smallest element in the given list.</li>
+   </ul>
+
+   <p><strong style="color: rgb(132, 221, 251);">Mechanism of the function:</strong></p>
+
+
+    <ul>
+        <li>The <b>quickselect</b> function utilizes the median of medians algorithm to select a pivot element for partitioning the list and find the kth smallest element in the given list.</li>
+        <li>It recursively partitions the list based on the pivot element and the kth smallest element to be found, reducing the search space until the kth smallest element is found.</li>
+    </ul>
+  </div>
+  
+  <br><br>
+
+  <div class="introduction" style="text-align: justify;">
+      
+
+    <h3 style="color: rgb(247, 247, 141);">9. median_of_medians(arr):</h3>
+
+
+    <p><strong style="color: rgb(132, 221, 251);">Input:</strong></p>
+     <ul>
+       <li>arr: A list of elements of which median is to be found.</li>
+     </ul>
+
+   <p><strong style="color: rgb(132, 221, 251);">Output:</strong></p>
+
+   <ul>
+      <li>meidan: The median of the given list.</li>
+   </ul>
+  </div>
+  
+  <br><br>
+
+  <div class="introduction" style="text-align: justify;">
+      
+
+    <h3 style="color: rgb(247, 247, 141);">10. partition(arr, low, high, pivot_value):</h3>
+
+
+    <p><strong style="color: rgb(132, 221, 251);">Input:</strong></p>
+     <ul>
+        <li>arr: A list of elements to be partitioned.</li>
+        <li>low: The starting index in consideration.</li>
+        <li>high: The ending index in consideration.</li>
+        <li>pivot_value: The value of the pivot element.</li>
+     </ul>
+
+   <p><strong style="color: rgb(132, 221, 251);">Output:</strong></p>
+
+   <ul>
+      <li>index: The index of the pivot element after partitioning.</li>
+   </ul>
+  </div>
+  
+  <br><br>
+  
+  <div class="introduction" style="text-align: justify;">
+      
+
+    <h3 style="color: rgb(247, 247, 141);">11. partition5(arr, left, right):</h3>
+
+
+    <p><strong style="color: rgb(132, 221, 251);">Input:</strong></p>
+     <ul>
+        <li>arr: A list of max length 5 whose median has to be returned.</li>
+        <li>left: The starting index in consideration.</li>
+        <li>right: The ending index in consideration.</li>
+     </ul>
+
+   <p><strong style="color: rgb(132, 221, 251);">Output:</strong></p>
+
+   <ul>
+      <li>median: median of the given list.</li>
+   </ul>
+  </div>
+  
+  <br><br>
+
   <div class="footer">
     We, the students of BITS Pilani Hyderabad Campus, have created this webpage, as a part of the Assignment-1 of the course
   CS F364 - Design and Analysis of Algorithms (DAA).
