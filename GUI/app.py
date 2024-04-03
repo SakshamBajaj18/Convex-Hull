@@ -57,6 +57,10 @@ def kps_visualisation():
     while True:
         bokeh_script=server_document('http://localhost:5006/kps')
         return render_template('kps.html', script1=bokeh_script)
+    
+@app.route('/documentation')
+def documentation():
+    return render_template('documentation.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

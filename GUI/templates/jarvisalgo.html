@@ -65,7 +65,14 @@
 <body>
   <div class="navbar">
     <img src="{{ url_for('static', filename='Images/logo.png') }}" alt="logo" /> 
-    <div class="home"><ul> <li><a  href="{{url_for('index')}}">   Home </a></li></ul></div>
+    <div class="home">
+      <ul> 
+        <li><a  href="{{url_for('documentation')}}">   Documentation </a></li>
+        <li><a  href="{{url_for('index')}}">   Home </a></li>
+        
+      </ul>
+
+    </div>
     
     <ul>
       <li><a href="{{url_for('about_us')}}">About Us </a></li>
@@ -73,6 +80,7 @@
           <li><a href="{{url_for('comp')}}">Complexity Comparison </a></li>
           <li><a  href="{{url_for('jarvis_march')}}">   Jarvis March </a></li>
           <li><a  href="{{url_for('kirkpatrick_seidel')}}">   KPS </a></li>
+          
     </ul>
   </div>
   <div>
