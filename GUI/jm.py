@@ -77,7 +77,7 @@ line1=[]
 line2=[]
 line3=[]
 count=0
-delay_time=500
+delay_time=100
 flag=0
 queued_functions=[]
 skip_flag=False
@@ -212,7 +212,7 @@ def compute_convex_hull():
         return
     
     points=[(point[0],point[1]) for point in points]
-    delay_time=500
+    delay_time=100
     if(100>len(points)>50):
         delay_time=50
     elif(len(points)>100):
@@ -234,7 +234,7 @@ def compute_convex_hull():
     if(flag==1):
         delay_time=10
     elif(flag==2):
-        delay_time=1
+        delay_time=0.5
     convex_hull_points = jarvis_march(points)
     tid=curdoc().add_timeout_callback(partial(plot_hull_points,convex_hull_points), count*delay_time)
     count+=1

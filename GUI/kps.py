@@ -771,6 +771,7 @@ def compute_convex_hull():
     points = list(zip(source.data['x'], source.data['y']))
     if len(points) < 3:
         print("At least 3 points are required to form a convex hull")
+        set_button_disabled()
         return
 
     skip_flag=False
