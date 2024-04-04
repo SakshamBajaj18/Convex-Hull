@@ -9,10 +9,10 @@ To run the project, follow the following steps:
 	2) run the command 
 		"pip install -r requirements.txt"
 	   to download all the packages and libraries required for running the application
-	3) run the following command on a terminal instance
+	3) run the following command on a terminal instance in the path .\CS_F364_DAA\GUI
 		"bokeh serve kps.py jm.py --allow-websocket-origin=127.0.0.1:5000"
 	   to start our Bokeh Server
-	4) run the Flask Server on another terminal by
+	4) run the Flask Server on another terminal in the path .\CS_F364_DAA\GUI by
 		"python app.py"
 	   to start our Flask App
 	5) visit 127.0.0.1:5000 and browse
