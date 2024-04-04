@@ -77,7 +77,7 @@ line1=[]
 line2=[]
 line3=[]
 count=0
-delay_time=100
+delay_time=50
 flag=0
 queued_functions=[]
 skip_flag=False
@@ -212,7 +212,7 @@ def compute_convex_hull():
         return
     
     points=[(point[0],point[1]) for point in points]
-    delay_time=100
+    delay_time=50
     if(100>len(points)>50):
         delay_time=50
     elif(len(points)>100):
