@@ -60,6 +60,21 @@
       margin-left: auto;
       margin-right: auto;
     }
+    .button-container {
+    display: flex;
+    justify-content: space-between; /* Align items with equal space between them */
+    list-style-type: none; /* Remove default list styles */
+    padding: 0; /* Remove default padding */
+  }
+
+  .button-left {
+    margin-right: auto; /* Push to the left end */
+  }
+
+  .button-center {
+    margin: auto; /* Center the button horizontally */
+  }
+
 </style>
 
 <body>
@@ -77,10 +92,10 @@
         
         <ul>
           <li><a href="{{url_for('about_us')}}">About Us </a></li>
-          <li><a href="{{url_for('info')}}">Info </a></li>
           <li><a href="{{url_for('comp')}}">Complexity Comparison </a></li>
           <li><a  href="{{url_for('jarvis_march')}}">   Jarvis March </a></li>
           <li><a  href="{{url_for('kirkpatrick_seidel')}}">   KPS </a></li>
+          <li><a href="{{url_for('info')}}">Info </a></li>
         </ul>
       </div>
 
@@ -88,13 +103,15 @@
 
     <h2 id="introduction">OTHER CONSIDERATIONS</h2>
     <div class="introduction" style="text-align: justify;">
-        <ul id="introduction">
-            <li>Jarvis March is a relatively simple algorithm to understand and implement.</li>
-            <li>It performs well when the number of points in the hull is small compared to the total number of points.</li>
-            <li>However, other algorithms like Graham scan have better overall time complexity <b>(O(nlogn))</b> for most cases.</li>
-            <li>Jarvis march is considered an output-sensitive algorithm, meaning its efficiency depends on the size of the output (number of hull points).</li>
-        </ul>
-    </div>
+      <ul id="introduction">
+          <li>Jarvis March is a relatively simple algorithm to understand and implement.</li>
+          <li>It performs well when the number of points in the hull is small compared to the total number of points.</li>
+          <li>However, other algorithms like Graham scan have better overall time complexity <b>(O(nlogn))</b> for most cases.</li>
+          <li>Jarvis march is considered an output-sensitive algorithm, meaning its efficiency depends on the size of the output (number of hull points).</li>
+      </ul>
+
+      <p>Overall, Jarvis March offers a good balance between simplicity and efficiency for specific scenarios where the number of hull points is expected to be small.</p>
+  </div>
 
     <h2 id="introduction">CONCLUSION</h2>
     <div class="introduction" style="text-align: justify;">
@@ -104,8 +121,9 @@
     <nav>
       <ul class="button-container">
         <li class="button-left"><a href="{{url_for('jm_runtime')}}">&larr; Run Time </a></li>
-        <li><a href="{{url_for('jarvis_march_visualisation')}}">Click here for Visualization</a></li>
-        
+        <li class="button-center"><a href="{{url_for('jarvis_march_visualisation')}}">Click here for Visualization</a></li>
+        <li></li>
+       
       </ul>
     </nav>
     

@@ -60,6 +60,21 @@
       margin-left: auto;
       margin-right: auto;
     }
+    .button-container {
+    display: flex;
+    justify-content: space-between; /* Align items with equal space between them */
+    list-style-type: none; /* Remove default list styles */
+    padding: 0; /* Remove default padding */
+  }
+
+  .button-left {
+    margin-right: auto; /* Push to the left end */
+  }
+
+  .button-center {
+    margin: auto; /* Center the button horizontally */
+  }
+
 </style>
 
 <body>
@@ -76,10 +91,10 @@
     
     <ul>
       <li><a href="{{url_for('about_us')}}">About Us </a></li>
-          <li><a href="{{url_for('info')}}">Info </a></li>
-          <li><a href="{{url_for('comp')}}">Complexity Comparison </a></li>
-          <li><a  href="{{url_for('jarvis_march')}}">   Jarvis March </a></li>
-          <li><a  href="{{url_for('kirkpatrick_seidel')}}">   KPS </a></li>
+      <li><a href="{{url_for('comp')}}">Complexity Comparison </a></li>
+      <li><a  href="{{url_for('jarvis_march')}}">   Jarvis March </a></li>
+      <li><a  href="{{url_for('kirkpatrick_seidel')}}">   KPS </a></li>
+      <li><a href="{{url_for('info')}}">Info </a></li>
     </ul>
   </div>
 
@@ -87,15 +102,16 @@
 
     <h2 id="introduction">OTHER CONSIDERATIONS</h2>
     <div class="introduction" style="text-align: justify;">
-        <ul id="introduction">
-            <li>Jarvis March is a relatively simple algorithm to understand and implement.</li>
-            <li>It performs well when the number of points in the hull is small compared to the total number of points.</li>
-            <li>However, other algorithms like Graham scan have better overall time complexity <b>(O(nlogn))</b> for most cases.</li>
-            <li>Jarvis march is considered an output-sensitive algorithm, meaning its efficiency depends on the size of the output (number of hull points).</li>
-        </ul>
-
-        <p>Overall, Jarvis March offers a good balance between simplicity and efficiency for specific scenarios where the number of hull points is expected to be small.</p>
-    </div>
+      <ul id="kps-considerations">
+          <li>The KPS algorithm is more complex compared to some other convex hull algorithms, such as Jarvis March.</li>
+          <li>It demonstrates excellent performance in scenarios where the number of points in the hull is relatively large compared to the total number of points.</li>
+          <li>With a time complexity of <b>O(n log h)</b>, where <b>n</b> is the number of points and <b>h</b> is the number of points in the hull, the KPS algorithm offers competitive performance, especially for larger datasets.</li>
+          <li>KPS is well-suited for situations where the input size is significantly larger, as its efficiency is influenced more by the number of points in the convex hull rather than the total number of points.</li>
+          <li>Compared to other algorithms like Graham scan, KPS may demonstrate better scalability and efficiency for larger datasets, especially in higher dimensions.</li>
+      </ul>
+      <p>Overall, the KPS algorithm provides a robust solution for computing convex hulls, particularly in scenarios where scalability and efficiency with larger datasets are crucial considerations.</p>
+  </div>
+  
 
     <h2 id="introduction">CONCLUSION</h2>
     <div class="introduction" style="text-align: justify;">
@@ -103,13 +119,15 @@
     </div>
 
     
-  <div class="footer"><nav>
-        <ul class="button-container">
-        <li class="button-right"><a href="{{url_for('kps_runtime')}}">&larr; Run Time </a></li>
-          <li><a href="{{url_for('kps_visualisation')}}">Click here for Visualization</a></li>
-          
-        </ul>
-      </nav>
+  <div class="footer">
+    <nav>
+      <ul class="button-container">
+        <li class="button-left"><a href="{{url_for('kps_runtime')}}">&larr; Run Time </a></li>
+        <li class="button-center"><a href="{{url_for('kps_visualisation')}}">Click here for Visualization</a></li>
+        <li></li>
+       
+      </ul>
+    </nav>
     We, the students of BITS Pilani Hyderabad Campus, have created this webpage, as a part of the Assignment-1 of the course
   CS F364 - Design and Analysis of Algorithms (DAA).
   </div>
