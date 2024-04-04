@@ -1,10 +1,12 @@
 # CS_F364_DAA
 
 Group Members:
-Kolasani Amit Vishnu: 2021A7PS0151H
-Rohan Pothireddy: 2021A7PS0365H
-Saksham Bajaj: 2021A7PS1315H
+
+Kolasani Amit Vishnu: 2021A7PS0151H <br>
+Rohan Pothireddy: 2021A7PS0365H <br>
+Saksham Bajaj: 2021A7PS1315H <br>
 Vashisth Choudhari: 2021A7PS1989H
+
 
 Web Pages of assignments done as a part of coursework under Prof. Tathagatha Ray, BITS Pilani Hyderabad Campus. This assignment encompasses a Graphical User Interface to depict visualisation for two convex hull algorithms, namely Jarvis March and Kirkpatrick Seidel. 
 
